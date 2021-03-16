@@ -1,0 +1,998 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://getbootstrap.com/2.0.4/assets/js/bootstrap-collapse.js"></script>
+
+    <title>Akashaverse: Size Table</title>
+    <link rel='icon' href='Images/icon.ico' type='image/x-icon' />
+    <script>
+        $(document).ready(function () {
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>
+    <style type="text/css">
+        @media screen and (max-width: 1024px) {
+            #reftable {
+                display: none !important;
+            }
+
+            .logo {
+                position: relative !important;
+                bottom: 15px !important;
+                right: 25px !important;
+                overflow: hidden;
+            }
+        }
+
+        p {
+            display: inline;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        html {
+            cursor: url('https://i.ibb.co/4f1mLqx/pinpng-com-mouse-click-png-2334780-2-22x32.png'), auto;
+        }
+
+        a, a:hover {
+            cursor: url('https://i.ibb.co/4f1mLqx/pinpng-com-mouse-click-png-2334780-2-22x32.png'), auto;
+        }
+
+        * {
+            cursor: url('https://i.ibb.co/4f1mLqx/pinpng-com-mouse-click-png-2334780-2-22x32.png'), auto;
+        }
+
+        .container {
+            background-color: #000000;
+            color: #FFFFFF;
+            opacity: 50%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 2px 2px 4px #000;
+        }
+
+        #reftable {
+            background-color: #000000;
+            color: #FFFFFF;
+            opacity: 50%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-right: 92px;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 2px 2px 4px #000;
+            z-index: -1;
+            position: relative;
+        }
+
+        table {
+            background-color: #000000;
+            color: #FFFFFF;
+            opacity: 100%;
+        }
+
+        .table-hover tbody tr:hover td,
+        .table-hover tbody tr:hover th {
+            background-color: #FFFFFF;
+            color: #000000;
+            opacity: 100%;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+        }
+    </style>
+
+</head>
+
+<body
+    style="background-image: url('Images/bg.jpg');background-position: center;background-attachment: fixed;height: auto;width: auto;background-size: cover;background-repeat: no-repeat;">
+
+    <img class="logo" style="position: absolute;left: 25px;top: 15px" src="Images/logo.png">
+
+    <div id="reftable" style="width: 500px !important;position: relative !important;float: right !important;">
+
+        <table id="reftable2" class="table text-white">
+
+            <thead>
+                <th>Reference Chart</th>
+                <th></th>
+            </thead>
+            <tr>
+
+                <td>{{ dp }}</td>
+                <td>{{ exponent}}<sup>36</sup> {{ scale2 }}</td>
+
+            </tr>
+            <tr>
+
+                <td>{{ oud }}</td>
+                <td>{{ exponent}}<sup>36</sup> {{ scale3 }}</td>
+
+            </tr>
+            <tr>
+
+                <td>{{ gd }}</td>
+                <td>{{ exponent}}<sup>36</sup> {{ scale4 }}</td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+    <div class="container text-white">
+
+        <nav class="navbar navbar-expand-xl navbar-dark">
+            <a class="navbar-brand" href="#">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link disabled" href="sizetable.html">Size Table</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="weighttable.html">Weight Table</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+        <div id="sizetable"
+            class="table-responsive col col-md-12 d-flex justify-content-center justify-content-md-start">
+
+            <table id="sizetable" style="z-index: 1;position: relative;" class="table table-hover text-white"
+                style="z-index:unset !important;position: relative !important;">
+
+                <thead style="position: sticky;top: 0">
+                    <th class="header" scope="col">Akashic Sizes</th>
+                    <th class="header" scope="col">Min Size</th>
+                    <th class="header" scope="col">Max Size</th>
+                </thead>
+
+                <tr>
+
+                    <td>Akashiversal</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="10,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000 DP">
+                            {{ exponent }}<sup>100</sup> {{ scale1
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="∞">Infinity (∞+)</p>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>Xenoversal</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="1,000,000,000,000,000,000,000,000,000,000 DP">{{ exponent }}<sup>30</sup> {{ scale1
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="10,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000,​000 DP">
+                            {{ exponent }}<sup>100</sup> {{ scale1
+                            }}</p>
+                    </td>
+
+                </tr>
+
+                <thead>
+                    <th>Dimensional Sizes</th>
+                    <th></th>
+                    <th></th>
+                </thead>
+
+                <tr>
+
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="Ωmega">OuterDimensional</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000,000,000,000,000 DP">{{
+                            exponent }}<sup>24</sup> {{ scale1
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="1,000,000,000,000,000,000,000,000,000,000 DP">{{ exponent }}<sup>30</sup> {{ scale1
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="γamma">OmniDimensional</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000,000,000 DP"> {{
+                            exponent }}<sup>18</sup> {{ scale1
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000,000,000,000,000 DP">{{
+                            exponent }}<sup>24</sup> {{ scale1
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="∆elta">HyperDimensional</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000 DP">{{ exponent
+                            }}<sup>12</sup> {{ scale1
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000,000,000 DP">{{
+                            exponent }}<sup>18</sup> {{ scale1
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="βeta">MultiDimensional</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000 DP">{{ exponent }}<sup>6</sup>
+                            {{ scale1
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000 DP">{{ exponent
+                            }}<sup>12</sup> {{ scale1
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="αlpha">Dimensional</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1 DP">1 {{ scale1 }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000 DP">{{ exponent }}<sup>6</sup>
+                            {{ scale1
+                            }}</p>
+                    </td>
+
+                </tr>
+
+                <thead>
+                    <th>Universal Sizes</th>
+                    <th></th>
+                    <th></th>
+                </thead>
+                <tr>
+
+                    <td>Outerversal</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="10,000,000,000,000,000,000,000,000,000 OUD">{{ exponent }}<sup>28</sup> {{ scale2
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="1,000,000,000,000,000,000,000,000,000,000,000,000 OUD">{{ exponent }}<sup>36</sup> {{
+                            scale2
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Omniversal</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000,000,000,000 OUD">{{
+                            exponent }}<sup>21</sup> {{ scale2
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="10,000,000,000,000,000,000,000,000,000 OUD">{{ exponent }}<sup>28</sup> {{ scale2
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Hyperversal</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="100,000,000,000,000 OUD">{{ exponent
+                            }}<sup>14</sup> {{ scale2
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000,000,000,000 OUD">{{
+                            exponent }}<sup>21</sup> {{ scale2
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Multiversal</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="10,000,000 OUD">{{ exponent
+                            }}<sup>7</sup> {{ scale2
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="100,000,000,000,000 OUD">{{ exponent
+                            }}<sup>14</sup> {{ scale2
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Universal</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1 OUD">1 {{ scale2 }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="10,000,000 OUD">{{ exponent
+                            }}<sup>7</sup> {{ scale2
+                            }}</p>
+                    </td>
+
+                </tr>
+
+                <thead>
+                    <th>Terrestrial Sizes</th>
+                    <th></th>
+                    <th></th>
+                </thead>
+
+                <tr>
+
+                    <td>OuterTerrestrial</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="10,000,000,000,000,000,000,000,000,000 GD">{{ exponent }}<sup>28</sup> {{ scale3
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="1,000,000,000,000,000,000,000,000,000,000,000,000 GD">{{ exponent }}<sup>36</sup> {{
+                            scale3
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>OmniTerrestrial</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000,000,000,000 GD">{{
+                            exponent }}<sup>21</sup> {{ scale3
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="10,000,000,000,000,000,000,000,000,000 GD">{{ exponent }}<sup>28</sup> {{ scale3
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>HyperTerrestrial</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="100,000,000,000,000 GD">{{ exponent
+                            }}<sup>14</sup> {{ scale3
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000,000,000,000 GD">{{
+                            exponent }}<sup>21</sup> {{ scale3
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>MultiTerrestrial</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="10,000,000 GD">{{ exponent
+                            }}<sup>7</sup> {{ scale3
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="100,000,000,000,000 GD">{{ exponent
+                            }}<sup>14</sup> {{ scale3
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Terrestrial</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1 GD">1 {{ scale3 }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="10,000,000 GD">{{ exponent
+                            }}<sup>7</sup> {{ scale3
+                            }}</p>
+                    </td>
+
+                </tr>
+
+                <thead>
+                    <th>Planetary Sizes</th>
+                    <th></th>
+                    <th></th>
+                </thead>
+
+                <tr>
+
+                    <td>Udaphile</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="1,000,000,000,000,000,000,000,000,000,000,000 M">{{ exponent }}<sup>33</sup> {{
+                            scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="1,000,000,000,000,000,000,000,000,000,000,000,000 M">{{ exponent }}<sup>36</sup> {{
+                            scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Vundaphile</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="1,000,000,000,000,000,000,000,000,000,000 M">{{ exponent }}<sup>30</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="1,000,000,000,000,000,000,000,000,000,000,000 M">{{ exponent }}<sup>33</sup> {{
+                            scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Wekaphile</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="1,000,000,000,000,000,000,000,000,000 M">{{ exponent }}<sup>27</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="1,000,000,000,000,000,000,000,000,000,000 M">{{ exponent }}<sup>30</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Xonaphile</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000,000,000,000,000 M">{{
+                            exponent }}<sup>24</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="1,000,000,000,000,000,000,000,000,000 M">{{ exponent }}<sup>27</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Yottaphile</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000,000,000,000 M">{{
+                            exponent }}<sup>21</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000,000,000,000,000 M">{{
+                            exponent }}<sup>24</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Zettaphile</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000,000,000 M">{{ exponent
+                            }}<sup>18</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000,000,000,000 M">{{
+                            exponent }}<sup>21</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Exaphile</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000,000 M">{{ exponent
+                            }}<sup>15</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000,000,000 M">{{ exponent
+                            }}<sup>18</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Petaphile</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000 M">{{ exponent
+                            }}<sup>12</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000,000 M">{{ exponent
+                            }}<sup>15</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Teraphile</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000 M">{{ exponent
+                            }}<sup>9</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000,000 M">{{ exponent
+                            }}<sup>12</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Gigaphile</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000 M">{{ exponent }}<sup>6</sup>
+                            {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000,000 M">{{ exponent
+                            }}<sup>9</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Megaphile</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000 M">{{ exponent }}<sup>3</sup> {{
+                            scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000,000 M">{{ exponent }}<sup>6</sup>
+                            {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Kilophile</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="100 M">100 {{ scale4 }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1,000 M">{{ exponent }}<sup>3</sup> {{
+                            scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Hectophile</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="10 M">10 {{ scale4 }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="100 M">100 {{ scale4 }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Dekaphile</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="3 M">3 {{ scale4 }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="10 M">10 {{ scale4 }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Normal</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1 M">1 {{ scale4 }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="3 M">3 {{ scale4 }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Tiny</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1 In">1 {{ scale5 }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1 M">1 {{ scale4 }}</p>
+                    </td>
+
+                </tr>
+
+                <thead>
+                    <th>Microbial Sizes</th>
+                    <th></th>
+                    <th></th>
+                </thead>
+
+                <tr>
+
+                    <td>Decimite</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.1 M">{{ exponent }}<sup>-1</sup> {{
+                            scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="1 In">1 {{ scale5 }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Centimite</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.01 M">{{ exponent }}<sup>-2</sup> {{
+                            scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.1 M">{{ exponent }}<sup>-1</sup> {{
+                            scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Millimite</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.001 M">{{ exponent }}<sup>-3</sup> {{
+                            scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.01 M">{{ exponent }}<sup>-2</sup> {{
+                            scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Micromite</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000001 M">{{ exponent }}<sup>-6</sup>
+                            {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.001 M">{{ exponent }}<sup>-3</sup> {{
+                            scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Nanomite</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000001 M">{{ exponent
+                            }}<sup>-9</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000001 M">{{ exponent }}<sup>-6</sup>
+                            {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Picomite</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000000001 M">{{ exponent
+                            }}<sup>-12</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000001 M">{{ exponent
+                            }}<sup>-9</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Femtomite</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000000000001 M">{{ exponent
+                            }}<sup>-15</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000000001 M">{{ exponent
+                            }}<sup>-12</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Attomite</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000000000000001 M">{{ exponent
+                            }}<sup>-18</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000000000001 M">{{ exponent
+                            }}<sup>-15</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Zoctomite</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000000000000000001 M">{{ exponent
+                            }}<sup>-21</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000000000000001 M">{{ exponent
+                            }}<sup>-18</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Yoctomite</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000000000000000000001 M">{{
+                            exponent }}<sup>-24</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000000000000000001 M">{{ exponent
+                            }}<sup>-21</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Xontomite</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000000000000000000000001 M">{{
+                            exponent }}<sup>-27</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000000000000000000001 M">{{
+                            exponent }}<sup>-24</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Wektomite</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000000000000000000000000001 M">{{
+                            exponent }}<sup>-30</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000000000000000000000001 M">{{
+                            exponent }}<sup>-27</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Vunktomite</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000000000000000000000000000001 M">
+                            {{ exponent }}<sup>-33</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000000000000000000000000001 M">{{
+                            exponent }}<sup>-30</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Untomite</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="0.000000000000000000000000000000000001 M">{{ exponent }}<sup>-36</sup> {{ scale4
+                            }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="0.000000000000000000000000000000001 M">
+                            {{ exponent }}<sup>-33</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Quarkmite</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001 M">
+                            {{ exponent }}<sup>-100</sup> {{
+                            scale4 }}</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="0.000000000000000000000000000000000001 M">{{ exponent }}<sup>-36</sup> {{ scale4
+                            }}</p>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>Akashimite</td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top" title="∞">Infinitesimal (-∞)</p>
+                    </td>
+                    <td>
+                        <p data-bs-toggle="tooltip" data-placement="top"
+                            title="0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001 M">
+                            {{ exponent }}<sup>-100</sup> {{
+                            scale4 }}</p>
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+    <script>
+        const Size = {
+            data() {
+                return {
+                    exponent: '1 x 10',
+                    dp: 'Dimensional Planes',
+                    oud: 'Observable Universe Diameters',
+                    gd: 'Galactic Discs',
+                    ly: 'Light Years',
+                    mi: 'Miles',
+                    ft: 'Feet',
+                    in: 'Inches',
+                    scale1: 'DP',
+                    scale2: 'OUD',
+                    scale3: 'GD',
+                    scale4: 'M',
+                    scale5: 'In',
+                    scale6: 'ℓP'
+                }
+            }
+        }
+
+        Vue.createApp(Size).mount('#sizetable')
+        const Chart = {
+            data() {
+                return {
+                    exponent: '1 x 10',
+                    dp: 'Dimensional Planes (DP)',
+                    oud: 'Observable Universe Diameters (OUD)',
+                    gd: 'Galactic Discs (GD)',
+                    ly: 'Light Years',
+                    mi: 'Miles',
+                    ft: 'Feet',
+                    in: 'Inches',
+                    scale1: 'DP',
+                    scale2: 'OUD',
+                    scale3: 'GD',
+                    scale4: 'M',
+                    scale5: 'In',
+                    scale6: 'ℓP'
+                }
+            }
+        }
+
+        Vue.createApp(Chart).mount('#reftable')
+    </script>
+
+</body>
+
+</html>
