@@ -66,34 +66,42 @@
             cursor: url('https://i.ibb.co/4f1mLqx/pinpng-com-mouse-click-png-2334780-2-22x32.png'), auto;
         }
 
-        .card {
-            background-color: #000000;
-            color: #FFFFFF;
-            opacity: 50%;
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 2px 2px 4px #000;
-            display: inline-block;
-        }
-
         .size {
             position: absolute;
             top: 250px;
             left: 350px;
+            background-color: #000000;
+            color: #FFFFFF;
+            opacity: 50%;
+            display: inline-block;
+            -webkit-transition: 0.5s;
         }
 
         .size:hover {
             opacity: 75%;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 2px 2px 4px #000;
+            -webkit-transition: 0.5s;
         }
 
         .weight {
             position: absolute;
             top: 250px;
             left: 650px;
+            background-color: #000000;
+            color: #FFFFFF;
+            opacity: 50%;
+            display: inline-block;
+            -webkit-transition: 0.5s;
         }
 
         .weight:hover {
             opacity: 75%;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 2px 2px 4px #000;
+            -webkit-transition: 0.5s;
         }
 
         #reftable {
@@ -108,6 +116,108 @@
             box-shadow: 2px 2px 4px #000;
             z-index: -1;
             position: relative;
+        }
+
+        body {
+            animation: fadein 2s;
+            -moz-animation: fadein 2s;
+            /* Firefox */
+            -webkit-animation: fadein 2s;
+            /* Safari and Chrome */
+            -o-animation: fadein 2s;
+            /* Opera */
+        }
+
+        @keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        @-moz-keyframes fadein {
+
+            /* Firefox */
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @-moz-keyframes fadeout {
+
+            /* Firefox */
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        @-webkit-keyframes fadein {
+
+            /* Safari and Chrome */
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes fadeout {
+
+            /* Safari and Chrome */
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        @-o-keyframes fadein {
+
+            /* Opera */
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @-o-keyframes fadeout {
+
+            /* Opera */
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
         }
 
         table {
@@ -129,24 +239,25 @@
 <body
     style="background-image: url('Images/bg.jpg');background-position: center;background-attachment: fixed;height: auto;width: auto;background-size: cover;background-repeat: no-repeat;">
 
-    <a href="https://github.com/CelesteAeon/Akashaverse"><img class="logo" style="position: absolute;top: 100px;left: 330px;" src="Images/logo.png"></a>
+    <a href="https://github.com/CelesteAeon/Akashaverse"><img class="logo"
+            style="position: absolute;top: 100px;left: 330px;" src="Images/logo.png"></a>
 
     <a href="sizetable.html">
-    <div class="card text-center size" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">Size Table</h5>
-            <p class="card-text">The size scale of the Akashic Universe.</p>
+        <div class="card text-center size" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Size Table</h5>
+                <p class="card-text">The size scale of the Akashic Universe.</p>
+            </div>
         </div>
-    </div>
     </a>
 
     <a href="weighttable.html">
-    <div class="card text-center weight" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">Weight Table</h5>
-            <p class="card-text">The weight scale of the Akashic Universe.</p>
+        <div class="card text-center weight" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Weight Table</h5>
+                <p class="card-text">The weight scale of the Akashic Universe.</p>
+            </div>
         </div>
-    </div>
     </a>
 
 </body>
